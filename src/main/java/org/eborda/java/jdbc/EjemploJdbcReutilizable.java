@@ -16,7 +16,9 @@ public class EjemploJdbcReutilizable {
 
             //Creamos la instancia del repositorio del tipo interface
             Repositorio<Producto> repositorio = new ProductoRepositorioImpl();
-            repositorio.listar().forEach(p -> System.out.println(p.getNombre()));
+            repositorio.listar().forEach(System.out::println);
+
+            System.out.println(repositorio.porId(2L));
         } catch (SQLException e) {
             e.printStackTrace();
         }

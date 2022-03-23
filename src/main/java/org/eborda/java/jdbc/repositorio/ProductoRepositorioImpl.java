@@ -3,10 +3,7 @@ package org.eborda.java.jdbc.repositorio;
 import org.eborda.java.jdbc.modelo.Producto;
 import org.eborda.java.jdbc.util.ConexionBaseDatos;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +21,7 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
              ResultSet rs = stmt.executeQuery("SELECT * FROM productos")) {
         //Iteramos el cursor el ResulSet con while, y por cada registro en la BD creamos un bojeto producto y la guardamos a la esta lista productos
             while (rs.next()){
-                Producto p = new Producto();
-                p.setId(rs.getLong("id"));
-                p.setNombre(rs.getString("nombre"));
-                p.setPrecio(rs.getInt("precio"));
-                p.setFechaRegistro(rs.getDate("fecha_registro"));
+                Producto p = crearProducto(rs);
                 productos.add(p);
             }
         } catch (SQLException e) {
@@ -39,7 +32,20 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
 
     @Override
     public Producto porId(Long id) {
-        return null;
+        //Devolvemos un tipo de producto, buscamos por Id
+        Producto producto = null;
+        try (PreparedStatement stmt = getConnection().
+                prepareStatement("SELECT * FROM productos WHERE id = ?")) {
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+            producto = crearProducto(rs);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return producto;
     }
 
     @Override
@@ -50,5 +56,14 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
     @Override
     public void eliminar(Long id) {
 
+    }
+
+    private Producto crearProducto(ResultSet rs) throws SQLException {
+        Producto p = new Producto();
+        p.setId(rs.getLong("id"));
+        p.setNombre(rs.getString("nombre"));
+        p.setPrecio(rs.getInt("precio"));
+        p.setFechaRegistro(rs.getDate("fecha_registro"));
+        return p;
     }
 }
