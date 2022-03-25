@@ -19,4 +19,4 @@ Para este ejemplo se trabajará con una clase producto que posee 4 atributos.
     private Date fechaRegistro;
 ```
 
-Es por eso que se debe crear una base de datos con estos atribitos, agregar registros en ellas para posteriormente configurarlo en cualquiera de las clases con de conexión.
+Es por eso que se debe crear una base de datos con estos atribitos, agregar registros en ellas para posteriormente configurarlo en cualquiera de las clases de conexión.
