@@ -1,5 +1,6 @@
 package org.eborda.java.jdbc;
 
+import org.eborda.java.jdbc.modelo.Categoria;
 import org.eborda.java.jdbc.modelo.Producto;
 import org.eborda.java.jdbc.repositorio.ProductoRepositorioImpl;
 import org.eborda.java.jdbc.repositorio.Repositorio;
@@ -26,9 +27,12 @@ public class EjemploJdbcReutilizableUpdate {
 
             System.out.println("============= Editar nuevo producto =============");
             Producto producto = new Producto();
-            producto.setId(3L);
-            producto.setNombre("Teclado Razer mecánico");
+            producto.setId(5L);
+            producto.setNombre("Teclado Corsair k95 mecánico");
             producto.setPrecio(700);
+            Categoria categoria = new Categoria();
+            categoria.setId(2L);
+            producto.setCategoria(categoria);
             //Guardamos el producto que creamos con los datos en la tabla usando repositorio
             repositorio.guardar(producto);
             System.out.println("Producto actualizado con éxito");

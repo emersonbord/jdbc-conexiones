@@ -8,6 +8,8 @@ public class Producto {
     private String nombre;
     private Integer precio;
     private Date fechaRegistro;
+    //Establecemos la relación entre Producto y Categoría, creando el atributo categori ya que es parte del producto
+    private Categoria categoria;
 
     public Producto() {
     }
@@ -51,6 +53,14 @@ public class Producto {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     @Override
     public String toString() {
         return id +
@@ -59,6 +69,7 @@ public class Producto {
                 " | " +
                 precio +
                 " | " +
-                fechaRegistro;
+                fechaRegistro +
+                " | " + categoria.getNombre();
     }
 }
