@@ -1,4 +1,4 @@
-## jdbc-conexiones🧱
+## jdbc-conexiones-crud-mysql🧱
 
 **Descripción:** En esta instancia, se muestran 3 ejemplos para conectarse a una base de datos MySQL utilizando la API JDBC (Java Database Connectivity), que permite
 la ejecución de operaciones y consultas sobre bases de datos desde Java. En el proyecto, existen 3 clases con el método main, dos de ellas `EjemploJdbc.java` y 
