@@ -5,11 +5,12 @@ import org.eborda.java.jdbc.repositorio.ProductoRepositorioImpl;
 import org.eborda.java.jdbc.repositorio.Repositorio;
 import org.eborda.java.jdbc.util.ConexionBaseDatos;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
 //Debemos importar la clase ConexionBaseDatos dentro de la carpeta util
-public class EjemploJdbcReutilizable {
+public class EjemploJdbcReutilizableUpdate {
 
     public static void main(String[] args) {
 
@@ -23,15 +24,14 @@ public class EjemploJdbcReutilizable {
             System.out.println("============= Obtener por id =============");
             System.out.println(repositorio.porId(1L));
 
-            System.out.println("============= Insertar nuevo producto =============");
+            System.out.println("============= Editar nuevo producto =============");
             Producto producto = new Producto();
-            producto.setNombre("Teclado mecánico");
-            producto.setPrecio(500);
-            producto.setFechaRegistro(new Date());
-
+            producto.setId(3L);
+            producto.setNombre("Teclado Razer mecánico");
+            producto.setPrecio(700);
             //Guardamos el producto que creamos con los datos en la tabla usando repositorio
             repositorio.guardar(producto);
-            System.out.println("Producto guardado con éxito");
+            System.out.println("Producto actualizado con éxito");
             repositorio.listar().forEach(System.out::println);
 
         } catch (SQLException e) {
