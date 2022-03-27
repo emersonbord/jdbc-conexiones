@@ -1,6 +1,6 @@
 ## jdbc-conexiones-crud-mysql🧱
 
-**Descripción:** En esta instancia, se muestran 3 ejemplos para conectarse a una base de datos MySQL utilizando la API JDBC (Java Database Connectivity), que permite
+**Descripción:** En esta instancia, se muestra un ejemplo de CRUD con base de datos utilizando la API JDBC. También, hay 3 ejemplos para conectarse a una base de datos MySQL utilizando la API JDBC (Java Database Connectivity), que permite
 la ejecución de operaciones y consultas sobre bases de datos desde Java. En el proyecto, existen 3 clases con el método main, dos de ellas `EjemploJdbc.java` y 
 `EjemploJdbcAvanzado.java`, permiten connectarse desde la misma clase. 
 
@@ -10,13 +10,22 @@ reutilizando código. Es por eso que el tercer método de conexión centraliza l
 **Singleton**. Dentro de la carpeta `util` en la clase `ConexionBaseDatos.java` tendremos nuestra conexión a la base de datos y corremos el programa con la clase con el
 método main `EjemploJdbcReutilizable.java`.
 
-Para este ejemplo se trabajará con una clase producto que posee 4 atributos.
+Para este ejemplo se necesita crear una base de datos con 2 tablas, puede ser creada en MySQL Workbench o en el famoso PhpMyAdmin utilizando servidor XAMPP. Las tablas a crear es una de **productos** con los siguientes atributos del modelo Producto:
 
 ```Java
     private Long id;
     private String nombre;
     private Integer precio;
     private Date fechaRegistro;
+    //Establecemos la relación entre Producto y Categoría, creando el atributo categoria del tipo Categoria ya que es parte del producto.
+    private Categoria categoria;
 ```
 
-Es por eso que se debe crear una base de datos con estos atribitos, agregar registros en ellas para posteriormente configurarlo en cualquiera de las clases de conexión.
+Y otra tabla **categorias** con los siguientes atributos del modelo Categoria. 
+
+```Java
+    private Long id;
+    private String nombre;
+```
+
+La relación entre tablas es de 1.....* (uno es muchos), en donde una categoría puede contener muchos productos.
