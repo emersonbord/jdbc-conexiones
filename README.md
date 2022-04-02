@@ -28,4 +28,4 @@ Y otra tabla **categorias** con los siguientes atributos del modelo Categoria.
     private String nombre;
 ```
 
-La relación entre tablas es de 1.....* (uno es muchos), en donde una categoría puede contener muchos productos.
+La relación entre tablas es de 1.....* (uno es muchos), en donde una categoría puede contener muchos productos, relación a tener en cuenta.
